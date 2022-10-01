@@ -6,6 +6,7 @@ This is a temporary script file.
 """
 import numpy as np
 import matplotlib.pyplot as plt
+import B2TransportParser as btp
 
 
 exp_file = np.genfromtxt('C:/Users/user/Documents/SOLPS data/simulation data/mast/yag_27205_275.dat',delimiter=' ')
@@ -19,4 +20,7 @@ data_file = np.genfromtxt('C:/Users/user/Documents/SOLPS data/simulation data/ma
 R_Rsep = data_file[:,0]
 plt.plot(data_file[:,0], data_file[:,1])
 plt.show()
+
+
+
 
