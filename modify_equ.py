@@ -6,7 +6,6 @@ Created on Sat Oct  1 00:34:46 2022
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
 import re
 
 file ='C:/Users/user/Documents/SOLPS data/simulation data/mast/g027205.00275.X2.equ'
