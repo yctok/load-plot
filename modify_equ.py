@@ -20,7 +20,7 @@ while j< 43:
     gdata = re.findall('[-+]?\d+\.?\d+[eE]?[-+]\d+', string2)
     mylist =[]
     for ii in gdata:
-        a = np.float64(ii) +np.float64(1.00000000)
+        a = np.float64(ii) +np.float64(0.50000000)
         b = "{:.8E}".format(a)
         mylist.append(b)
     writelist = ' '.join(str(x)+"   " for x in mylist)
@@ -55,7 +55,7 @@ for m, k in enumerate(w_datalist):
 #for m in range(10):
     string_w = w_datalist[m]
     w_data = re.findall('[-+]?\d+\.?\d+', string_w)  
-    a = np.float64(w_data[0]) + np.float64(1000.00000)
+    a = np.float64(w_data[0]) + np.float64(500.00000)
     a1 = "{: .5f}".format(a)
     b = np.float64(w_data[1])
     b1 = "{: .5f}".format(b)
