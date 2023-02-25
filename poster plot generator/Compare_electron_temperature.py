@@ -37,8 +37,8 @@ plt.show()
 GF = 'C:/Users/user/Documents/SOLPS data/experiment data/MAST__RMP_results/g027205.00275_efitpp'
 
 ne_data_o = 'C:/Users/user/Documents/SOLPS data/simulation data/mast/org/te3da.last10'
-ne_data_m = 'C:/Users/user/Documents/SOLPS data/simulation data/mast/mequ_2.1.1/te3da.last10'
-ne_data_s = 'C:/Users/user/Documents/SOLPS data/simulation data/mast/mequ_stable4/te3da.last10'
+ne_data_m = 'C:/Users/user/Documents/SOLPS data/simulation data/mast/jameson/te3da.last10'
+ne_data_s = 'C:/Users/user/Documents/SOLPS data/simulation data/mast/m1equ_stable/te3da.last10'
 
 
 eq = equilibrium(gfile=GF)
@@ -86,9 +86,9 @@ ax.errorbar(psi_n, exp_Te, err_Te, color = 'blue', label= 'experimental data')
 
 #plt.subplots()
 #plt.plot(psi_n, exp_ne, color = 'blue', label= 'experimental data')
-plt.plot(new_R1, Attempt1[:,1], color = 'orange', label= 'original setup')
-plt.plot(new_R2, Attempt2[:,1], color = 'green', label= 'modify A')
-plt.plot(new_R3, Attempt3[:,1], color = 'red', label= 'modify B')
+#plt.plot(new_R1, Attempt1[:,1], color = 'orange', label= 'original setup')
+plt.plot(new_R2, Attempt2[:,1], color = 'green', label= 'Jameson_solution_original_setup')
+plt.plot(new_R3, Attempt3[:,1], color = 'red', label= 'Modify_one_meter_stable_solution')
 plt.xlabel('Magnetic flux coordinate: ${\psi_N}$', fontdict={"family":"Times New Roman","size": 20})
 plt.ylabel('Electron temperature: ${T_e}$ (eV)', fontdict={"family":"Times New Roman","size": 20})
 plt.title('Electron temperature',fontdict={"family":"Times New Roman","size": 20})
