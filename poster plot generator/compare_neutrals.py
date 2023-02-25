@@ -14,8 +14,8 @@ from equilibrium import equilibrium
 GF = 'C:/Users/user/Documents/SOLPS data/experiment data/MAST__RMP_results/g027205.00275_efitpp'
 
 an_data_1 = 'C:/Users/user/Documents/SOLPS data/simulation data/mast/org/an3da.last10'
-an_data_2 = 'C:/Users/user/Documents/SOLPS data/simulation data/mast/mequ_2.1.1/an3da.last10'
-an_data_3 = 'C:/Users/user/Documents/SOLPS data/simulation data/mast/mequ_stable4/an3da.last10'
+an_data_2 = 'C:/Users/user/Documents/SOLPS data/simulation data/mast/jameson/an3da.last10'
+an_data_3 = 'C:/Users/user/Documents/SOLPS data/simulation data/mast/m1equ_stable/an3da.last10'
 
 eq = equilibrium(gfile=GF)
 Attempt1 = np.loadtxt(an_data_1)
@@ -62,9 +62,9 @@ if len(Attempt3) != 0:
     Attempt3 = Attempt3.T
 
 
-plt.plot(new_R1, Attempt1[:,1], color = 'orange', label= 'original setup')
-plt.plot(new_R2, Attempt2[:,1], color = 'green', label= 'modify A')
-plt.plot(new_R3, Attempt3[:,1], color = 'red', label= 'modify B')
+#plt.plot(new_R1, Attempt1[:,1], color = 'orange', label= 'original setup')
+plt.plot(new_R2, Attempt2[:,1], color = 'green', label= 'Jameson_solution_original_setup')
+plt.plot(new_R3, Attempt3[:,1], color = 'red', label= 'Modify_one_meter_stable_solution')
 plt.xlabel('Magnetic flux coordinate: ${\psi_N}$', fontdict={"family":"Times New Roman","size": 20})
 plt.ylabel('Neutral density: ${n_D}$ (m$^{-3}$)', fontdict={"family":"Times New Roman","size": 20})
 plt.title('Neutral density',fontdict={"family":"Times New Roman","size": 20})
