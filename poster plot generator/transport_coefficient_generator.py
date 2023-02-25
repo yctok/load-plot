@@ -43,8 +43,8 @@ for cf in st:
 
 print(stn)
 
-plt.plot(x,y, 'o-', color = 'orange', label ='original & modify A')
-plt.plot(x,stn, 'o-', color = 'red', label= 'modify B')
+plt.plot(x,y, 'o-', color = 'orange', label ='Jameson_solution_original_setup')
+plt.plot(x,stn, 'o-', color = 'red', label= 'Modify_one_meter_stable_solution')
 plt.xlabel('Magnetic flux coordinate: ${\psi_N}$', fontdict={"family":"Times New Roman","size": 20})
 plt.ylabel('Density-driven diffusivity: D (m$^{2}$/s)', fontdict={"family":"Times New Roman","size": 20})
 plt.title('Density transport coefficient',fontdict={"family":"Times New Roman","size": 20})
