@@ -18,7 +18,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import B2TransportParser as b2tp
 from equilibrium import equilibrium
-from SOLPSxport import SOLPSxport
 import tools as tl
 import glob
 
