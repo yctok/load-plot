@@ -24,7 +24,7 @@ dev = 'mast'
 shot = '027205'
 shift = 'org'
 series = ['try & error','p4_d6']
-s_choose = 0
+s_choose = 1
 
 a_list = []
 # b_list = []
