@@ -5,15 +5,6 @@ Created on Mon Apr  3 05:01:31 2023
 @author: user
 """
 
-psi_solps =[0.56591402, 0.59635553, 0.65365526, 0.70507622, 0.75083496,
-        0.79132874, 0.82698182, 0.85806206, 0.88490369, 0.90789432,
-        0.92738632, 0.94367313, 0.95706941, 0.96795829, 0.97677538,
-        0.9838775 , 0.98955578, 0.99415907, 0.99803803, 1.002408  ,
-        1.00753157, 1.01263476, 1.01772166, 1.02279374, 1.02785249,
-        1.03288158, 1.03794617, 1.04306613, 1.04817989, 1.05328886,
-        1.05838546, 1.06347049, 1.06855367, 1.07363646, 1.07872032,
-        1.08380671, 1.08889011, 1.09145489]
-
 import numpy as np
 import matplotlib.pyplot as plt
 from equilibrium import equilibrium
@@ -23,30 +14,65 @@ import glob
 dev = 'mast'
 shot = '027205'
 shift = 'org'
-series = ['try & error','p4_d6']
-s_choose = 1
+series = ['try & error','p4_d6', 'p4_d6_11',
+          '1ex_input0.1%_ts6_series', '4ex_n_decay0.06_ts6_series',
+          '5ex_n_decay0.03_ts6_series', '6ex_input0.2%_ts6_series']
+ex1 = '1ex_p4_input0.1%_'
+ex4 = '4ex_p4_d6'
+ex5 = '5ex_p4_d3'
+ex6 = '6ex_p4_input0.2%_'
+s_choose = 5
 
-a_list = []
-# b_list = []
 basedrt, topdrt = tl.set_wdir()
 
 if s_choose == 0:
     a_list = glob.glob('{}/{}/{}/{}/{}/p4_*'.format(basedrt, dev, shot, shift, series[0]))
+    a_list.sort(key=tl.a_number)
+    
+    
 elif s_choose == 1:
     a_list = glob.glob('{}/{}/{}/{}/{}*'.format(basedrt, dev, shot, shift, series[1]))
+    a_list.sort(key=tl.a_number)
     
-# b_list = glob.glob('{}/{}/{}/{}/{}/{}*'.format(basedrt, dev, shot, shift, series[1], ex1))
-# print(b_list)
-# print(len(a_list))
+elif s_choose == 2:
+    a_list = glob.glob('{}/{}/{}/{}/{}*'.format(basedrt, dev, shot, shift, series[2]))
+    b_list = glob.glob('{}/{}/{}/{}/{}/{}*'.format(basedrt, dev, shot, shift, series[3], ex1))
+    a_list.sort(key=tl.a_number)
+    b_list.sort(key=tl.ex1_number)
 
-a_list.sort(key=tl.a_number)
+    for ii in range(len(b_list)):
+        a_list.append(b_list[ii])
 
-# b_list.sort(key=tl.ex1_number)
-# print(b_list)
+elif s_choose == 3:
+    a_list = glob.glob('{}/{}/{}/{}/{}*'.format(basedrt, dev, shot, shift, series[2]))
+    b_list = glob.glob('{}/{}/{}/{}/{}/{}*'.format(basedrt, dev, shot, shift, series[4], ex4))
+    print(b_list)
+    a_list.sort(key=tl.a_number)
+    b_list.sort(key=tl.ex1_number)
 
+    for ii in range(len(b_list)):
+        a_list.append(b_list[ii])
 
-# for ii in range(len(b_list)):
-#     a_list.append(b_list[ii])
+elif s_choose == 4:
+    a_list = glob.glob('{}/{}/{}/{}/{}*'.format(basedrt, dev, shot, shift, series[2]))
+    b_list = glob.glob('{}/{}/{}/{}/{}/{}*'.format(basedrt, dev, shot, shift, series[5], ex5))
+    print(b_list)
+    a_list.sort(key=tl.a_number)
+    b_list.sort(key=tl.ex1_number)
+
+    for ii in range(len(b_list)):
+        a_list.append(b_list[ii])
+        
+elif s_choose == 5:
+    a_list = glob.glob('{}/{}/{}/{}/{}*'.format(basedrt, dev, shot, shift, series[2]))
+    b_list = glob.glob('{}/{}/{}/{}/{}/{}*'.format(basedrt, dev, shot, shift, series[6], ex6))
+    print(b_list)
+    a_list.sort(key=tl.a_number)
+    b_list.sort(key=tl.ex1_number)
+
+    for ii in range(len(b_list)):
+        a_list.append(b_list[ii])
+
 
 n_dir = len(a_list)
 
@@ -63,7 +89,8 @@ gtr = glob.glob('{}/{}/{}/g{}*'.format(topdrt, dev, shot, shot))
 print(gtr)
 
 fd_list = []
-last10_list = ['ne3da.last10', 'te3da.last10', 'an3da.last10']
+last10_list = [
+    'ne3da.last10', 'te3da.last10', 'an3da.last10']
 fd_dic = {}
 
 
@@ -86,7 +113,7 @@ for kk in last10_list:
     for k in range(n_dir):
         Attempt = np.loadtxt(fd_dic[kk][k])
         Attempt = Attempt.T
-        Attempt[0]= psi_solps
+        Attempt[0]= tl.dsa_to_psi(Attempt[0])
         # Attempt = Attempt.T
         nest[attempt_name[k]] = Attempt
     data[kk] = nest
@@ -114,10 +141,13 @@ for i in range(delta):
 
 
 plot_dic = tl.unit_dic()
+log_flag = True
 nn = 1
 
 for c in last10_list:
     plt.figure(nn)
+    if log_flag:
+        plt.yscale('log')
     for m in range(n_dir):
         plt.plot(data[c][attempt_name[m]][0], data[c][attempt_name[m]][1], label= attempt_name[m])
     if c == 'ne3da.last10':
@@ -130,4 +160,41 @@ for c in last10_list:
     plt.legend()
     nn = nn + 1
 
+div_list = []
+div_last10 = [
+    'ne3dl.last10', 'te3dl.last10', 'an3dl.last10',
+    'ne3dr.last10', 'te3dr.last10', 'an3dr.last10',]
+div_dic = {}
+
+
+for w in div_last10:
+    div_list = []
+    for x in range(n_dir):
+        div_list.append('{}/{}'.format(a_list[x], w))
+    div_dic[w] = div_list
+
+
+for a in div_last10:
+    div_nest = {}
+    for b in range(n_dir):
+        div_data = np.loadtxt(div_dic[a][b])
+        div_data = div_data.T
+        # div_data[0]= tl.dsa_to_psi(div_data[0])
+        div_nest[attempt_name[b]] = div_data
+    data[a] = div_nest
+
+for d in div_last10:
+    plt.figure(nn)
+    if log_flag:
+        plt.yscale('log')
+    for e in range(n_dir):
+        plt.plot(data[d][attempt_name[e]][0], data[d][attempt_name[e]][1], label= attempt_name[e])
+    plt.xlabel('Radial coordinate: $R- R_{sep}$', fontdict={"family":"Times New Roman","size": 20})
+    plt.ylabel(plot_dic[d][1], fontdict={"family":"Times New Roman","size": 20})
+    plt.title(plot_dic[d][0],fontdict={"family":"Times New Roman","size": 20})
+    plt.legend()
+    nn = nn + 1
+
 plt.show()
+    
+
