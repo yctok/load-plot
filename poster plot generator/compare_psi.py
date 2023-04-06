@@ -98,7 +98,13 @@ for k in range(n_dir):
     data2[attempt_name[k]] = Attempt
     
 plt.figure(1)
-plt.scatter(R_file, data2[attempt_name[0]][0], label= attempt_name[0])
-plt.scatter(R_file, psi_solps, label= attempt_name[0])
+plt.scatter(R_file, data2[attempt_name[0]][0], label= 'R_to_eq_psi')
+plt.scatter(R_file, psi_solps, label= 'R_to_xport_psi')
+
+plt.xlabel('Radial coordinate: R', fontdict={"family":"Times New Roman","size": 20})
+plt.ylabel('Magnetic flux coordinate: ${\psi_N}$', fontdict={"family":"Times New Roman","size": 20})
+plt.title('R- psi normal',fontdict={"family":"Times New Roman","size": 20})
+plt.legend()
+
 
 plt.show()
