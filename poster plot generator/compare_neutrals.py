@@ -11,7 +11,7 @@ import B2TransportParser as b2tp
 from equilibrium import equilibrium
 
 
-GF = 'C:/Users/user/Documents/SOLPS data/experiment data/MAST__RMP_results/g027205.00275_efitpp'
+GF = 'C:/Users/user/Documents/SOLPS data/experiment data/mast/027205/g027205.00275_efitpp'
 
 an_data_1 = 'C:/Users/user/Documents/SOLPS data/simulation data/mast/org/an3da.last10'
 an_data_2 = 'C:/Users/user/Documents/SOLPS data/simulation data/mast/jameson/an3da.last10'
@@ -61,7 +61,7 @@ if len(Attempt3) != 0:
     Attempt3[0]=new_R3
     Attempt3 = Attempt3.T
 
-
+plt.yscale('log')
 #plt.plot(new_R1, Attempt1[:,1], color = 'orange', label= 'original setup')
 plt.plot(new_R2, Attempt2[:,1], color = 'green', label= 'Jameson_solution_original_setup')
 plt.plot(new_R3, Attempt3[:,1], color = 'red', label= 'Modify_one_meter_stable_solution')
