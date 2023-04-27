@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 from equilibrium import equilibrium
 import B2TransportParser as b2tp
 
+
 T_input = 'C:/Users/user/Documents/SOLPS data/simulation data/mast/b2.transport.inputfile'
 
 trans_list = b2tp.InputfileParser(T_input, plot= False)
