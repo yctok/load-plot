@@ -23,7 +23,7 @@ ex4 = '4ex_p4_d6'
 ex5 = '5ex_p4_d3'
 ex6 = '6ex_p4_input0.2%_'
 ex7 = '7ex_p4_d6_'
-s_choose = 6
+s_choose = 1
 
 basedrt, topdrt = tl.set_wdir()
 
