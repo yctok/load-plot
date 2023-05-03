@@ -35,11 +35,17 @@ def ex1_number(text):
 
     return [nu, text]
 
+def new_number(text):
+    name = text.split("/",-1)[-2]
+    nu = int(name.split('_')[2])
+
+    return [nu, text]
+
 def unit_dic():
     unit = {
-        'ne3da.last10': ['Electron density, outboard midplane', 'Electron density: ${n_e}$ (m$^{-3}$)'],
-        'te3da.last10': ['Electron temperature, outboard midplane', 'Electron temperature: ${T_e}$ (eV)'],
-        'an3da.last10':['Neutral density, outboard midplane', 'Neutral density: ${n_D}$ (m$^{-3}$)'],
+        'ne3da.last10': ['Electron density, midplane', 'Electron density: ${n_e}$ (m$^{-3}$)'],
+        'te3da.last10': ['Electron temperature, midplane', 'Electron temperature: ${T_e}$ (eV)'],
+        'an3da.last10':['Neutral density, midplane', 'Neutral density: ${n_D}$ (m$^{-3}$)'],
         'ne3di.last10': ['Electron density, inboard midplane', 'Electron density: ${n_e}$ (m$^{-3}$)'],
         'te3di.last10': ['Electron temperature, inboard midplane', 'Electron temperature: ${T_e}$ (eV)'],
         'an3di.last10':['Neutral density, inboard midplane', 'Neutral density: ${n_D}$ (m$^{-3}$)'],
@@ -104,10 +110,10 @@ dsa = [-0.10817856015924884,
 0.021230335606628042,
 0.021849669506929625]
 
-def psi_to_dsa():
+def psi_to_dsa(array):
     psi_to_dsa_func = interpolate.interp1d(psi_solps, dsa, fill_value = 'extrapolate')
     
-    return psi_to_dsa_func()
+    return psi_to_dsa_func(array)
 
 def dsa_to_psi(array):
     dsa_to_psi_func = interpolate.interp1d(dsa, psi_solps, fill_value = 'extrapolate')
@@ -124,19 +130,26 @@ def read_mastfile(mastfile_loc):
     nlines_tot = len(lines)
     psi_n = np.zeros(nlines_tot)
     ne = np.zeros(nlines_tot)
+    ne_er = np.zeros(nlines_tot)
     te = np.zeros(nlines_tot)
+    te_er = np.zeros(nlines_tot)
+    
     i = 0
     
     while i < nlines_tot:
         r_line = lines[i].split()
         psi_n[i] = float(r_line[0])
         ne[i] = float(r_line[1])*pow(10, -20)
+        ne_er[i] = float(r_line[2])*pow(10, -20)
         te[i] = float(r_line[3])/1000
+        te_er[i] = float(r_line[4])/1000
         i += 1
 
     profiles['psi_normal'] = psi_n
     profiles['electron_density(10^20/m^3)'] = ne
+    profiles['density error(10^20/m^3)'] = ne_er
     profiles['electron_temperature(KeV)'] = te
+    profiles['temperature error(10^20/m^3)'] = te_er
     return profiles
 
 def read_fitfile(mastfile_loc):
@@ -167,4 +180,10 @@ def tanh(r,r0,h,d,b,m):
 
 def expfit(x,A,l):  #Removed vertical displacement variable B; seemed to cause 'overfitting'
     return A*np.exp(l*x)
+
+def flat_tanh(x,b,h,d):
+    return b+(h/2)*(np.tanh(-x/d)+1)
+
+def exp_wshift(x,A,l,c):  #Removed vertical displacement variable B; seemed to cause 'overfitting'
+    return A*np.exp(l*x- c)
 
