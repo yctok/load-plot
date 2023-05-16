@@ -14,8 +14,8 @@ import glob
 dev = 'mast'
 shot = '027205'
 shift = 'org_new_series'
-series = ['29_hh_nts5_a']
-n = '30sh'
+series = ['36_sh_nts5_a']
+n = '37'
 s_choose = 0
 
 basedrt, topdrt = tl.set_wdir()
@@ -36,39 +36,29 @@ yke = coke[:,1]
 m = len(yd)
 mod_y = np.zeros(m)
 for j in range(m):
-    if j<=23:
+    if j<=13:
+        mod_y[j] = 1.3
+    elif j>13 and j<=24:
         mod_y[j] = cod[j,1]
     else:
-        mod_y[j] = 3.50
+        mod_y[j] = 9.0
 cod[:,1] = mod_y
 
 mod_yki = np.zeros(m)
 for j in range(m):
-    if j< 15:
+    if j<= 26:
         mod_yki[j] = coki[j,1]  
     else:
-        mod_yki[j] = 0.40
+        mod_yki[j] = 14.50
 coki[:,1] = mod_yki
 
 mod_yke = np.zeros(m)
 for j in range(m):
-    if j< 15:
+    if j<= 20:
         mod_yke[j] = coke[j,1]  
     else:
-        mod_yke[j] = 1.00
+        mod_yke[j] =10.00
 coke[:,1] = mod_yke
-
-    # elif j>= 13 and j <= 23:
-    #     mod_y[j] = cod[j,1]
-
-# # mod_y = mod_y*0.8  
-
-#     elif j>= 13 and j <= 17:
-#         mod_yki[j] = coki[j,1]
-
-#     elif j>= 13 and j <= 16:
-#         mod_yke[j] = coke[j,1]
-
 
 b = b2tp.Generate(cod, CoeffID=1, SpeciesID=2, M=[1])
 c = b2tp.WriteInputfile(file='b2.transport.inputfile_{}'.format(n), points= trans_list ,M_1 = True, M=[1])
@@ -84,14 +74,14 @@ for k in specieslist:
     if log_flag:
         plt.yscale('log')
         plt.figure(i + 1)
-        plt.plot(trans_list[k][0,:], trans_list[k][1,:], 'o-', color = 'orange', label ='{} transport coefficient'.format(series[0]))
+        plt.plot(trans_list[k][0,:], trans_list[k][1,:], 'o-', color = 'orange', label ='{} transport coefficient'.format('35_sh_nts5_a'))
         plt.xlabel('Radial coordinate: $R- R_{sep}$', fontdict={"family":"Times New Roman","size": 20})
         plt.ylabel(d[k][1], fontdict={"family":"Times New Roman","size": 20})
         plt.title(d[k][0],fontdict={"family":"Times New Roman","size": 20})
         plt.legend()
     else:
         plt.figure(i + 1)
-        plt.plot(trans_list[k][0,:], trans_list[k][1,:], 'o-', color = 'orange', label ='{} transport coefficient'.format(series[0]))
+        plt.plot(trans_list[k][0,:], trans_list[k][1,:], 'o-', color = 'orange', label ='{} transport coefficient'.format('35_sh_nts5_a'))
         plt.xlabel('Radial coordinate: $R- R_{sep}$', fontdict={"family":"Times New Roman","size": 20})
         plt.ylabel(d[k][1], fontdict={"family":"Times New Roman","size": 20})
         plt.title(d[k][0],fontdict={"family":"Times New Roman","size": 20})
@@ -99,3 +89,16 @@ for k in specieslist:
     i = i + 1
 
 plt.show()
+
+
+
+# elif j>= 13 and j <= 23:
+#     mod_y[j] = cod[j,1]
+
+# # mod_y = mod_y*0.8  
+
+#     elif j>= 13 and j <= 17:
+#         mod_yki[j] = coki[j,1]
+
+#     elif j>= 13 and j <= 16:
+#         mod_yke[j] = coke[j,1]
