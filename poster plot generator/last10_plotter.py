@@ -16,7 +16,7 @@ shot = '027205'
 shift_a = 'one_LS'
 series_a = ['lsts5_tw_17_one_a']
 shift_b = 'org_new_series'
-series_b = ['24l_tw_27_nts5_a']
+series_b = ['ch_hh_30_nts5_a']
 
 s_choose = 1
 
