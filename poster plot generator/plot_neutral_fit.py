@@ -18,7 +18,7 @@ shot = '027205'
 shift_a = 'one_LS'
 series_a = ['lsts5_tw_17_one_a']
 shift_b = 'org_new_series'
-series_b = ['24l_u_25_nts5_a']
+series_b = ['ch_hh_30_nts5_a']
 
 s_choose = 1
 
@@ -87,14 +87,14 @@ for kk in last10_list:
     data[kk] = nest
 
 
-psi_fit = data['an3da.last10']['24l_u_25_nts5_a'][0,:]
+psi_fit = data['an3da.last10']['ch_hh_30_nts5_a'][0,:]
 r_rsep = tl.psi_to_dsa(psi_fit)
-an3da = data['an3da.last10']['24l_u_25_nts5_a'][1,:]
+an3da = data['an3da.last10']['ch_hh_30_nts5_a'][1,:]
 xam = len(psi_fit)
 x_fit = []
 an_sh = []
 for i in range(xam - 1):
-    if r_rsep[i+ 1] <= 0:
+    if r_rsep[i+ 1] <= 0.0:
         x_fit.append(r_rsep[i +1])
         an_sh.append(an3da[i +1])
 shift_x = np.zeros(len(x_fit))
@@ -174,10 +174,11 @@ nn = 1
 x = [-xv, 0]
 y = [max(an_sh), max(an_sh)]
 xd = [-dn, dn]
-yd = [ne_sh[100], ne_sh[100]]
+yd = [ne_sh[109], ne_sh[109]]
 
 
 ax1 = plt.subplot(212)
+# plt.figure(1)
 plt.rcParams.update({'font.size': 20})
 plt.plot(r_rsep, an3da,'o-', color = 'green', label= 'solps simulation')
 plt.plot(new_x, exp_an_fit, color='r',lw=5, label= 'exponential fit')
@@ -194,9 +195,10 @@ plt.ylabel(plot_dic['an3da.last10'][1], fontdict={"family":"Calibri","size": 20}
 plt.legend()
 
 ax2 = plt.subplot(211, sharex= ax1)
+# plt.figure(2)
 plt.rcParams.update({'font.size': 20})
 plt.plot(rd, ne_sh,'o-', color = 'r', label= 'experimental density fit')
-plt.plot(xd, yd, color='black', lw=3, label= 'Pedestal width [m]: $\Delta$')
+plt.plot(xd, yd, color='black', lw=3, label= 'Pedestal width [m]: $\Delta n_e$')
 plt.axvline(x=dn, color='black',lw=3)
 plt.axvline(x=-dn, color='black',lw=3)
 plt.axvline(x=0, color='orange',lw=3, ls='--')
