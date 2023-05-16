@@ -14,7 +14,7 @@ import glob
 dev = 'mast'
 shot = '027205'
 shift = 'one_LS'
-series = ['lsts5_tw_17_one_a']
+series = ['lsts5_19_tw_one_a']
 
 s_choose = 0
 
@@ -40,37 +40,28 @@ psi = tl.dsa_to_psi(x)
 m = len(yd)
 mod_y = np.zeros(m)
 for j in range(m):
-    if j< 15:
-        mod_y[j] = 2.50
-    elif j>= 15 and j <= 16:
+    if j<= 29:
         mod_y[j] = cod[j,1]
-    
     else:
-        mod_y[j] = 0.13
+        mod_y[j] = 2.5
         
 cod[:,1] = mod_y
 
-mod_yki = np.zeros(m)
-for j in range(m):
-    if j< 14:
-        mod_yki[j] = 1.0
-    elif j>= 14 and j <= 17:
-        mod_yki[j] = coki[j,1]
-    
-    else:
-        mod_yki[j] = 0.18
+# mod_yki = np.zeros(m)
+# for j in range(m):
+#     if j< 14:
+#         mod_yki[j] = coki[j,1]
+#     else:
+#         mod_yki[j] = 0.18
         
-coki[:,1] = mod_yki
+# coki[:,1] = mod_yki
 
 mod_yke = np.zeros(m)
 for j in range(m):
-    if j< 14:
-        mod_yke[j] = 0.90
-    elif j>= 14 and j <= 17:
-        mod_yke[j] = coke[j,1]
-    
+    if j<= 30:
+        mod_yke[j] = coke[j,1]  
     else:
-        mod_yke[j] = 0.21
+        mod_yke[j] = 2.5
         
 coke[:,1] = mod_yke
 
@@ -98,4 +89,13 @@ for k in specieslist:
 
 plt.show()
 
+
+#     elif j>= 15 and j <= 16:
+#         mod_y[j] = cod[j,1]
+
+#     elif j>= 14 and j <= 17:
+#         mod_yke[j] = coke[j,1]
+
+#     elif j>= 14 and j <= 17:
+#         mod_yki[j] = coki[j,1]
 
