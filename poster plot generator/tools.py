@@ -15,13 +15,15 @@ def set_wdir(): #Function to set correct Working Directory Path depending on whi
         if os.environ['USERNAME'] == 'Yi-Cheng':
             basedrt = r"C:/Users/Yi-Cheng/Documents/SOLPS_Data/Simulation_Data"
             topdrt = r"C:/Users/Yi-Cheng/Documents/SOLPS_Data/Experimental_Data"
+            tpdrt = r"C:/Users/Yi-Cheng/Documents/SOLPS_Data/Experimental_Data"
         elif os.environ['USERNAME'] == 'user':
             basedrt = r"C:/Users/user/Documents/SOLPS data/simulation data"
             topdrt = r"C:/Users/user/Documents/SOLPS data/experiment data"
+            tpdrt = r"C:/Users/user/Documents/GitHub/load-plot/poster plot generator"
     else:
         print('please add new directory in tools')
     
-    return basedrt, topdrt
+    return basedrt, topdrt, tpdrt
 
 def a_number(text):
     name = text.split('\\',1)[1]
