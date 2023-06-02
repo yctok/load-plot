@@ -18,7 +18,7 @@ series = ['h7d5orgb_del0.001_14_nts5_a']
 
 s_choose = 0
 
-basedrt, topdrt = tl.set_wdir()
+basedrt, topdrt, tpdrt = tl.set_wdir()
 
 if s_choose == 0:
     a_list = glob.glob('{}/{}/{}/{}/{}/b2.transport.inputfile_new'.format(basedrt, dev, shot, shift, series[0]))
@@ -32,28 +32,6 @@ x= cod[:,0]  #the coordinate here is R-R_sep
 yd= cod[:,1]
 yki = coki[:,1]
 yke = coke[:,1]
-
-# cod[:,1] = yo
-# coki[:,1] = yoi
-# coke[:,1] = yke
-# ori_dic = {}
-# ori_dic = {'1': yo, '3': yoi, '4': yoe}
-
-
-# m = len(yd)
-# mod_y = np.zeros(m)
-# for j in range(m):
-#     if j< 13:
-#         mod_y[j] = 20
-#     elif j>= 12 and j <= 19:
-#         mod_y[j] = cod[j,1]
-    
-#     else:
-#         mod_y[j] = 8.7
-        
-# cod[:,1] = mod_y
-
-
 
 
 
