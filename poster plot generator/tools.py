@@ -9,6 +9,7 @@ Collection of general Tools to perform oft-repeated SOLPS data analyis and post-
 import os
 import numpy as np
 from scipy import interpolate
+import glob
 
 def set_wdir(): #Function to set correct Working Directory Path depending on which machine is in use
     if os.environ['OS'] == 'Windows_NT':
@@ -42,6 +43,42 @@ def new_number(text):
     nu = int(name.split('_')[2])
 
     return [nu, text]
+
+def s_number(text):
+    name = text.split("/",-1)[-2]
+    nu = int(name.split('_')[0])
+
+    return [nu, text]
+
+
+def mast_tranco_dir(a_shift):
+    dev = 'mast'
+    shot = '027205'
+    shift = ['org_new_series', 'dot5', 'dot7', 'one_LS']
+    series = ['37_sh_nts5_a', '15_dn0.5hc0.05_ts5_dot5_a', '2_t1_dot7_a', 'lsts5_19_tw_one_a']
+
+    basedrt, topdrt, tpdrt= set_wdir()
+    
+    if a_shift == 'org':
+        a_list = glob.glob('{}/{}/{}/{}/{}/b2.transport.inputfile_new'.format(basedrt, dev, shot, shift[0], series[0]))
+        n = s_number(a_list)[0] + 1
+        print(n)
+    elif a_shift == 'dot5':
+        a_list = glob.glob('{}/{}/{}/{}/{}/b2.transport.inputfile_new'.format(basedrt, dev, shot, shift[1], series[1]))
+        n = s_number(a_list)[0] + 1
+        print(n)
+    elif a_shift == 'dot7':
+        a_list = glob.glob('{}/{}/{}/{}/{}/b2.transport.inputfile_new'.format(basedrt, dev, shot, shift[2], series[2]))
+        n = s_number(a_list)[0] + 1
+        print(n)
+    elif a_shift == 'one':
+        a_list = glob.glob('{}/{}/{}/{}/{}/b2.transport.inputfile_new'.format(basedrt, dev, shot, shift[3], series[3]))
+        n = s_number(a_list)[0] + 1
+        print(n)
+    
+    return a_list, n
+
+
 
 def unit_dic():
     unit = {
