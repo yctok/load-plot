@@ -62,24 +62,31 @@ def mast_dir_dic():
     mast_dir_dic = {
     'dev': 'mast',
     'shot': '027205',
-    'shift': ['org_new_series', 'dot5', 'dot7', 'one_LS'],
-    'series' : ['37_sh_nts5_a', '15_dn0.5hc0.05_ts5_dot5_a', '2_t1_dot7_a', '27_lsts5_tw_one_a']
+    'shift': ['org_new_series', 'dot3', 'dot5', 'dot7', 'one_LS'],
+    'series' : ['39_noc_nts5_a', '1_n5_dot3_a', '15_dn0.5hc0.05_ts5_dot5_a', '2_t1_dot7_a', '27_lsts5_tw_one_a']
     }
     return mast_dir_dic
 
-def mast_std_dir():
+def mast_transition_dir():
     d= mast_dir_dic()
     basedrt, topdrt, tpdrt= set_wdir()
     org_list = glob.glob('{}/{}/{}/{}/{}/b2.transport.inputfile_new'.format(basedrt, d['dev'], d['shot'], d['shift'][0], d['series'][0]))
     n = s_number(org_list[0])[0]
-    std_list = glob.glob('{}/b2.transport.inputfile_{}'.format(tpdrt, n))
+    transit_list = glob.glob('{}/b2.transport.inputfile_{}'.format(tpdrt, n))
+    
+    return transit_list
+
+def mast_std_dir():
+    d= mast_dir_dic()
+    basedrt, topdrt, tpdrt= set_wdir()
+    std_list = glob.glob('{}/{}/{}/{}/{}/b2.transport.inputfile'.format(basedrt, d['dev'], d['shot'], d['shift'][0], d['series'][0]))
     
     return std_list
 
 def mast_tranco_dir(a_shift):
     d= mast_dir_dic()
     basedrt, topdrt, tpdrt= set_wdir()
-    shift_list = ['org', 'dot5', 'dot7', 'one']
+    shift_list = ['org', 'dot3', 'dot5', 'dot7', 'one']
     
     for s in shift_list:
         if a_shift == s:
