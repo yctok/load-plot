@@ -42,4 +42,4 @@ class SOLPSplot:
         
 instance = SOLPSplot(dev = 'mast', shift = 'org_027205', series = 'p_ts4_series', case= '7ex_p4_d6_9_ts6_a', jxa = '57')
 b = instance.neutral_plot()
-print(b)
+# print(b)
