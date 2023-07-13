@@ -29,7 +29,7 @@ s_choose = 1
 
 a_list = []
 # b_list = []
-basedrt, topdrt = tl.set_wdir()
+basedrt, topdrt, tpdrt = tl.set_wdir()
 
 if s_choose == 0:
     a_list = glob.glob('{}/{}/{}/{}/{}/p4_*'.format(basedrt, dev, shot, shift, series[0]))
