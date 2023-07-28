@@ -22,7 +22,7 @@ series_b = ['ch_hh_30_nts5_a']
 
 s_choose = 1
 
-basedrt, topdrt = tl.set_wdir()
+basedrt, topdrt, tpdrt= tl.set_wdir()
 
 if s_choose == 0:
     a_list = glob.glob('{}/{}/{}/{}/{}/'.format(basedrt, dev, shot, shift_a, series_a[0]))
