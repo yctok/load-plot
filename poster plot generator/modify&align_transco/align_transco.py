@@ -10,7 +10,7 @@ import B2TransportParser as b2tp
 from scipy import interpolate
 import tools as tl
 
-one_list, n , filename_a, shift_a = tl.mast_tranco_dir('dot5')
+one_list, n , filename_a, shift_a = tl.mast_tranco_dir('one')
 print(one_list)
 org_list = tl.mast_std_dir()
 
