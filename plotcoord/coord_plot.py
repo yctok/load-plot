@@ -21,12 +21,6 @@ class SOLPSplot:
           gfile_loc       location of corresponding g file
           impurity_list   List of all the impurity species included in the plasma simulation
         """
-        
-        
-        self.b2plot_ready = False
-        if 'B2PLOT_DEV' in os.environ.keys():
-            if os.environ['B2PLOT_DEV'] == 'ps':
-                self.b2plot_ready = True
 
         self.data = {'workdir':workdir, 'gfile_loc': gfile_loc,
                      'expData':{'fitProfs':{}}, 'solpsData':{}}
