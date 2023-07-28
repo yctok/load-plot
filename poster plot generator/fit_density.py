@@ -11,7 +11,7 @@ from scipy.optimize import curve_fit
 import tools as tl
 import glob
 
-basedrt, topdrt = tl.set_wdir()
+basedrt, topdrt, tpdrt = tl.set_wdir()
 dev = 'mast'
 shot = '027205'
 
@@ -44,6 +44,9 @@ def dat_fit():
     plt.show()
       
     return popt_ne[2], popt_te[2]
+
+
+
     
     # w_datalist = []
     # filename = 'fit_027205_275.dat'
