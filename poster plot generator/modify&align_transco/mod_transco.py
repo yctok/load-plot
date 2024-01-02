@@ -44,10 +44,10 @@ coki[:,1] = mod_yki
 
 mod_yke = np.zeros(m)
 for j in range(m):
-    if j<= 22:
+    if j<= 24:
         mod_yke[j] = coke[j,1]  
     else:
-        mod_yke[j] = 10.0
+        mod_yke[j] = 18.0
 coke[:,1] = mod_yke
 
 b = b2tp.Generate(cod, CoeffID=1, SpeciesID=2, M=[1])
