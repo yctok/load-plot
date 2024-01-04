@@ -53,7 +53,7 @@ coke[:,1] = mod_yke
 b = b2tp.Generate(cod, CoeffID=1, SpeciesID=2, M=[1])
 c = b2tp.WriteInputfile(file='b2.transport.inputfile_mod_{}{}'.format(shift, n), points= trans_list ,M_1 = True, M=[1])
 
-log_flag = True
+log_flag = False
 specieslist = ['1','3','4']
 d = tl.unit_dic()
 i = 0
